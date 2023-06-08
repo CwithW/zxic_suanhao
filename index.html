@@ -1,0 +1,21 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <p>v1.2切卡算号</p>
+    <input type="text" id="input" placeholder="请输入imei" />
+    <button onclick="get()">获取</button>
+</body>
+<script src="suanhao.js" ></script>
+<script>
+
+    function get() {
+        var imei = document.getElementById("input").value;
+        imei = imei.trim()
+        var result = suanhao(imei);
+        alert(result);
+    }
+</script>
+</html>
