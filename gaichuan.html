@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <p>TZ103V1.2改串（别的版本可能也能用</p>
+    <p>先打开这个页面，然后连接设备wifi，然后访问 后台地址 （默认 192.168.100.1） 自己登录，然后点 改串号</p>
+    <p>如果看到success，就是成功了</p>
+    <p>改完建议：重启设备</p>
+    <input type="text" id="houtai" placeholder="后台地址" value="192.168.100.1" />
+    <input type="text" id="input" placeholder="请输入imei，15位的纯数字" />
+    <button onclick="get()">改串号</button>
+    <button onclick="random()">生成一个随机的串号</button>
+</body>
+<script>
+    function random(){
+        // generate 15 digits
+        let imei = "";
+        for (let i = 0; i < 15; i++) {
+            imei += Math.floor(Math.random() * 10);
+        }
+        document.getElementById("input").value = imei;
+    }
+    function get() {
+        let imei = document.getElementById("input").value;
+        imei = imei.trim()
+        // assert imei is 15 digits
+        if (imei.length != 15 || /^\d$/.test(imei)) {
+            alert("imei长度不对或者不是数字");
+            return;
+        }
+        let AT_CMD1 = `MODIMEI%3D${imei}`;
+        let urlToAccess = `http://${document.getElementById("houtai").value}/goform/goform_set_cmd_process?goformId=ALK_EXC_AT_CMD1&AT_CMD1=${AT_CMD1}`;
+        window.location.href = urlToAccess;
+    }
+</script>
+</html>
