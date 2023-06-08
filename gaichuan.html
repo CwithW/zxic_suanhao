@@ -5,13 +5,14 @@
 </head>
 <body>
     <p>TZ103V1.2改串（别的版本可能也能用</p>
-    <p>先打开这个页面，然后连接设备wifi，然后访问 后台地址 （默认 192.168.100.1） 自己登录，然后点 改串号</p>
+    <p>使用方法：先用手机流量打开这个页面，然后连接设备wifi，然后 输入imei 点 改串号</p>
     <p>如果看到success，就是成功了</p>
     <p>改完建议：重启设备</p>
     <input type="text" id="houtai" placeholder="后台地址" value="192.168.100.1" />
     <input type="text" id="input" placeholder="请输入imei，15位的纯数字" />
     <button onclick="get()">改串号</button>
     <button onclick="random()">生成一个随机的串号</button>
+    <p id="result1"></p><a id="result"></a>
 </body>
 <script>
 
@@ -151,6 +152,11 @@ else return false;
         }
         let AT_CMD1 = `MODIMEI%3D${imei}`;
         let urlToAccess = `http://${document.getElementById("houtai").value}/goform/goform_set_cmd_process?goformId=ALK_EXC_AT_CMD1&AT_CMD1=${AT_CMD1}`;
+        let div = document.getElementById("result");
+        result.href = urlToAccess;
+        result.innerHTML = urlToAccess;
+        let div1 = document.getElementById("result1");
+        result1.innerHTML = "你也可以复制这个连接到浏览器访问：";
         window.location.href = urlToAccess;
     }
 </script>
